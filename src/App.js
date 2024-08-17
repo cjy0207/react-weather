@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState} from 'react';
 import WeatherBox from './component/WeatherBox';
 import WeatherButton from './component/WeatherButton'
 
@@ -17,13 +17,13 @@ function App() {
   const API_KEY = "552f28e18ad082913d9700abdb4bfb0f"
   const [weather, setWeather]=useState(null)
 
-  const getCurrentLocation= useCallback(()=>{
+  const getCurrentLocation= ()=>{
     navigator.geolocation.getCurrentPosition((position)=>{
       let lat = position.coords.latitude;
       let lon = position.coords.longitude;
       getWeatherByCurrentLocation(lat,lon)
     });
-  })
+  }
 
   const getWeatherByCurrentLocation= async (lat,lon)=>{
     let url =`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
